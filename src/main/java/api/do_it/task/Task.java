@@ -4,13 +4,20 @@ import java.util.Date;
 import java.util.Objects;
 
 import api.do_it.category.Category;
+import jakarta.persistence.*;
 
+@Entity
+@Table(name="tasks")
 public class Task {
 	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String name;
 	private String description;
 	private Status status;
+	@ManyToOne
+	@JoinColumn(name = "category_id")
 	private Category category;
 	private Date creation;
 	private Date deadline;
